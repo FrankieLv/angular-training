@@ -1,0 +1,10 @@
+
+<div class="row">
+    <div class="col-6">
+        <app-product-form (newProduct)="addProduct($event)"></app-product-form>
+    </div>
+    <div class="col-6">
+        <app-product-table [productService]="productService"></app-product-table>
+        <!--<app-product-table></app-product-table> -->
+    </div>
+</div>

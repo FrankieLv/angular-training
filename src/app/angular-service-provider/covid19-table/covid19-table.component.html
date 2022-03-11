@@ -1,0 +1,51 @@
+<div class="bg-primary text-left text-white p-2">
+    Covid-19: Good Job, US!!! Dummy Data
+</div>
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr><th></th><th>Confirmed</th><th>recovered</th><th>deaths</th><th>state</th></tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of getCovid19Cases(); let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{item.confirmed}}</td>
+            <td>{{item.recovered}}</td>
+            <td>{{item.deaths}}</td>
+            <td>{{item.state}}</td>
+        </tr>
+    </tbody>    
+</table>
+
+
+
+<div class="bg-primary text-left text-white p-2">
+    <div>Covid-19: Good Job, {{ country }}!!! Real Data</div>
+
+    <form novalidate #form="ngForm" (ngSubmit)="getRealCovid19Cases()">   
+        <div class="row form-group"> 
+            <div class="col-1">
+                <input class="form-control" style="text-align: center"
+                name="country" [(ngModel)]="country" />
+            </div>
+            <div class="col-11">
+                <button class="btn btn-danger" type="submit">
+                    Load
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr><th></th><th>Confirmed</th><th>recovered</th><th>deaths</th><th>state</th></tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of realData; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{item.confirmed}}</td>
+            <td>{{item.recovered}}</td>
+            <td>{{item.deaths}}</td>
+            <td>{{item.state}}</td>
+        </tr>
+    </tbody>    
+</table>
