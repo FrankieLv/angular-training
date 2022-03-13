@@ -21,14 +21,28 @@ export class ProductFormComponent implements OnInit {
   @ViewChild("nameInputRef")
   nameInputRef: ElementRef;
 
+ 
+  ngAfterViewChecked(): void{
+    console.log("product-form-component - ngAfterViewChecked()");
+  }
   ngAfterViewInit(): void{
+    console.log("product-form-component - ngAfterViewInit():nameInputRef");
     this.nameInputRef.nativeElement.focus();
+  }
+
+  ngAfterContentInit(): void{
+    console.log("product-form-component - ngAfterConentInit()");
+  }
+
+  ngAfterContentChecked(): void{
+    console.log("product-form-component - ngAfterContentChecked()");
   }
 
 
   constructor() { }
-
   ngOnInit(): void {
+    
   }
+ 
 
 }

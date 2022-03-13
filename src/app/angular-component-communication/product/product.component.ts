@@ -17,11 +17,15 @@ export class ProductComponent implements OnInit {
   //  constructor(private productService: ProductService) {
   //  }
 
-  ngOnInit(): void {
-  }
+
 
   addProduct(newProduct: Product): void {
     this.productService.addProduct(newProduct);
   }
 
+  testlf: string;
+
+  ngOnInit(): void {
+  }
+  
 }

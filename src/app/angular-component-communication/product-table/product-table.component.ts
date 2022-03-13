@@ -11,14 +11,30 @@ export class ProductTableComponent implements OnInit {
   constructor(){}
   //constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
-  }
-
   @Input("productService")
   productService: ProductService;
 
   getProducts(): Product[] {
     return this.productService.getProducts();
-}
+  }
+
+  @Input("testlf")
+  testlf: string;
+
+  ngOnChanges(): void {
+    console.log("ProductTableComponent - ngOnchanges():");
+  }
+
+  ngOnInit(): void {
+    console.log("ProductTableComponent - ngOnInit():");
+  }
+
+  ngDoCheck(): void {
+    console.log("ProductTableComponent-component - ngDochek():");
+  }
+
+  ngDestroy(): void {
+    console.log("ProductTableComponent-component - ngDesctroy....");
+  }
 
 }
