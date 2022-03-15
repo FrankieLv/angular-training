@@ -1,6 +1,7 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { HttpClient}  from "@angular/common/http";
 import { Covid19Case } from '../model/covid19.case.model';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 export const REST_URL = new InjectionToken("rest_url");
@@ -25,8 +26,6 @@ export class Covid19CaseServiceService {
       new Covid19Case(3496205, 0, 7636, "Australia"),
       new Covid19Case(3496205, 0, 7636, "Australia"),
       new Covid19Case(3496205, 0, 7636, "Australia"))
-
-    this.realData = [];
   }
 
   getCovid19Cases(): Covid19Case[] {
@@ -34,9 +33,21 @@ export class Covid19CaseServiceService {
   }
 
 
-  private realData: Covid19Case[];
-  getRealCovid19Cases(countryFilter: string): any{
-    return this._httpClient.get(this.url + `${countryFilter}`);
+  getRealCovid19Cases(countryFilter: string): Observable<Covid19Case[]>{
+    return this._httpClient.get(this.url + `${countryFilter}`).pipe(map(result => {
+      let realData: Covid19Case[] = [];
+      for (let stateKey in result) {
+          const stateData = result[stateKey];
+           realData.push({
+              confirmed: stateData.confirmed,
+              recovered: stateData.recovered,
+              deaths: stateData.deaths,
+              state: stateKey,
+          })
+      }
+      return realData;
+    }
+    ));
   }
 
 }
